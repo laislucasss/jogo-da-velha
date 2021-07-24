@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Jogo da velha</title>
+
+    <style>
+        #tabuleiro {
+            width: 500px;
+            height: 500px;
+            background-color: pink;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .linha {
+            display: flex;
+            font-size: 100px;
+            color: white;
+        }
+
+        .linha div {
+            width: 110px;
+            height: 110px;
+            text-align: center;
+            border: 1px solid burlywood;
+            cursor: pointer;
+        }
+
+        .linha div:hover {
+            color: plum;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="tabuleiro">
+        <div class="linha">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="linha">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="linha">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+    <script>
+        let jogadorAtual = "x"
+
+        let celulas = document.querySelectorAll(".linha div")
+        celulas.forEach(function (celula) {
+            celula.addEventListener("click", function () {
+                celula.innerText = jogadorAtual
+                if (jogadorAtual == "x") {
+                    jogadorAtual = "o"
+                }
+                else {
+                    jogadorAtual = "x"
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>
