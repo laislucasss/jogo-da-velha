@@ -9,7 +9,7 @@
         #tabuleiro {
             width: 500px;
             height: 500px;
-            background-color: pink;
+            background-color: burlywood;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -26,37 +26,50 @@
             width: 110px;
             height: 110px;
             text-align: center;
-            border: 1px solid burlywood;
+            border: 1px solid white;
             cursor: pointer;
         }
 
         .linha div:hover {
-            color: plum;
+            color: pink;
         }
     </style>
 </head>
 
 <body>
-    <div id="tabuleiro">
-        <div class="linha">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-        <div class="linha">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-        <div class="linha">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </div>
+    <div id="tabuleiro"></div>
 
     <script>
         let jogadorAtual = "x"
+        let tabuleiro = [
+            ["", "", ""],
+            ["", "", ""],
+            ["", "", ""]
+        ]
+
+
+        function desenhaTabuleiro() {
+            let elemTabuleiro = document.querySelector("#tabuleiro")
+
+            for (let [idLinha, linha] of tabuleiro.entries()) {
+                let elemLinha = document.createElement("div")
+                elemLinha.classList.add("linha")
+
+                for (let [idColuna, celula] of linha.entries()) {
+                    let elemCelula = document.createElement("div")
+                    elemCelula.innerText = celula
+
+                    elemCelula.setAttribute('x', idColuna);
+                    elemCelula.setAttribute('y', idLinha);
+                    elemLinha.appendChild(elemCelula)
+                }
+
+                elemTabuleiro.appendChild(elemLinha)
+            }
+        }
+
+        desenhaTabuleiro()
+
 
         let celulas = document.querySelectorAll(".linha div")
         celulas.forEach(function (celula) {
